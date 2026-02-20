@@ -5,7 +5,6 @@ Zombie::Zombie(string name) {
 }
 
 Zombie::~Zombie() {
-    // Destruktor-Meldung für das Debugging
     WriteLine(this->name + " has been laid to rest.");
 }
 
