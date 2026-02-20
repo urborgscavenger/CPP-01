@@ -1,15 +1,13 @@
 #include "Zombie.hpp"
 
-Zombie* zombieHorde(int N, string name) {
+Zombie** zombieHorde(int N, string name) {
     if (N <= 0)
         return NULL;
 
-    // Single allocation using new[]; default constructor is called for each element.
-    Zombie* horde = new Zombie[N];
-
+    Zombie** horde = new Zombie*[N + 1];
     for (int i = 0; i < N; ++i) {
-        horde[i].setName(name);
+        horde[i] = new Zombie(name);
     }
-
+    horde[N] = NULL;
     return horde;
 }
