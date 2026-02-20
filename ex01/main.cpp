@@ -6,13 +6,13 @@
 
 int main(void) {
     const int N = 5;
-    Zombie** horde = zombieHorde(N, string("Zed"));
+    Zombie* horde = zombieHorde(N, string("Zed"));
 
-    foreach(Zombie, z, horde) z->announce();
+    foreach(Zombie, z, (Zombie**)horde) z->announce();
 
     // cleanup
-    foreach(Zombie, z, horde) delete z;
+    foreach(Zombie, z, (Zombie**)horde) delete z;
     
-    delete[] horde;
+    delete[] (Zombie**)horde;
     return 0;
 }

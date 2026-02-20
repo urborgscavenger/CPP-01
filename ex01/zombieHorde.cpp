@@ -1,6 +1,6 @@
 #include "Zombie.hpp"
 
-Zombie** zombieHorde(int N, string name) {
+Zombie* zombieHorde(int N, string name) {
     if (N <= 0)
         return NULL;
 
@@ -9,5 +9,5 @@ Zombie** zombieHorde(int N, string name) {
         horde[i] = new Zombie(name);
     }
     horde[N] = NULL;
-    return horde;
+    return (Zombie*) horde;
 }

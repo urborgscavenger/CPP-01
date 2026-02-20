@@ -22,6 +22,6 @@ public:
 };
 
 // prototype for helper (use the `string` alias to avoid macro expansion issues)
-Zombie** zombieHorde(int N, string name);
+Zombie* zombieHorde(int N, string name);
 
 #endif
