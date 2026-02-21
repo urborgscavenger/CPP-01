@@ -1,7 +1,10 @@
 #include <iostream>
 #include <string>
 
-#define string std::string
+#ifndef STRING_ALIAS
+#define STRING_ALIAS
+typedef std::string string;
+#endif
 #define WriteLine(x) std::cout << x << std::endl
 
 int main() {

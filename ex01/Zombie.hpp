@@ -5,7 +5,11 @@
 #include <string>
 
 // C# Style Aliases
-#define string std::string
+// Use a typedef instead of a preprocessor macro for `string`
+#ifndef STRING_ALIAS
+#define STRING_ALIAS
+typedef std::string string;
+#endif
 #define WriteLine(x) std::cout << x << std::endl
 
 class Zombie {

@@ -3,7 +3,10 @@
 
 #include <string>
 
-#define string std::string
+#ifndef STRING_ALIAS
+#define STRING_ALIAS
+typedef std::string string;
+#endif
 
 class Weapon {
 private:

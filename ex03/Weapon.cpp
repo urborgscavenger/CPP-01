@@ -1,4 +1,7 @@
 #include "Weapon.hpp"
+#include <iostream>
+
+#define WriteLine(x) std::cout << x << std::endl
 
 Weapon::Weapon(string type) : type(type) {}
 
