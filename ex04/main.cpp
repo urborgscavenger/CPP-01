@@ -14,7 +14,29 @@ public:
         }
         return string((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
     }
+
+    static void WriteAllText(const string& filename, const string& content) {
+        std::ofstream out(filename.c_str());
+        if (!out) {
+            throw std::runtime_error("Cannot open file: " + filename);
+        }
+        out << content;
+    }
 };
+
+// C#-style string replace helper
+string Replace(const string& str, const string& oldStr, const string& newStr) {
+    string result;
+    size_t pos = 0;
+    size_t found;
+    while ((found = str.find(oldStr, pos)) != string::npos) {
+        result += str.substr(pos, found - pos);
+        result += newStr;
+        pos = found + oldStr.length();
+    }
+    result += str.substr(pos);
+    return result;
+}
 
 int main(int argc, char* argv[]) {
     if (argc != 4) {
@@ -28,26 +50,9 @@ int main(int argc, char* argv[]) {
 
     try {
         string content = File::ReadAllText(filename);
-
-        string result;
-        size_t pos = 0;
-        size_t found;
-        while ((found = content.find(s1, pos)) != string::npos) {
-            result += content.substr(pos, found - pos);
-            result += s2;
-            pos = found + s1.length();
-        }
-        result += content.substr(pos);
-
+        string result = Replace(content, s1, s2);
         string outname = filename + ".replace";
-        std::ofstream out(outname.c_str());
-        if (!out) {
-            WriteLine("Error: cannot open output file " + outname);
-            return 1;
-        }
-        out << result;
-        out.close();
-
+        File::WriteAllText(outname, result);
         WriteLine("Replacement done. Output in " + outname);
     } catch (const std::exception& e) {
         WriteLine("Error: " + string(e.what()));
