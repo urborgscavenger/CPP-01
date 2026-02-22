@@ -24,7 +24,6 @@ public:
     }
 };
 
-// C#-style string replace helper
 string Replace(const string& str, const string& oldStr, const string& newStr) {
     string result;
     size_t pos = 0;

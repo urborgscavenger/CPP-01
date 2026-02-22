@@ -4,8 +4,6 @@
 #include <iostream>
 #include <string>
 
-// C# Style Aliases
-// Use a typedef instead of a preprocessor macro for `string`
 #ifndef STRING_ALIAS
 #define STRING_ALIAS
 typedef std::string string;
@@ -25,7 +23,6 @@ public:
     void setName(string name);
 };
 
-// prototype for helper (use the `string` alias to avoid macro expansion issues)
 Zombie* zombieHorde(int N, string name);
 
 #endif
