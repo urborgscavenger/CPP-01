@@ -2,7 +2,6 @@
 #define HARL_HPP
 
 #include <string>
-#include <map>
 
 // C# Style Aliases
 typedef std::string string;
@@ -16,7 +15,14 @@ private:
     void error(void);
 
     typedef void (Harl::*ComplainFunc)(void);
-    std::map<string, ComplainFunc> complainMap;
+
+    struct ComplainEntry {
+        string key;
+        ComplainFunc func;
+    };
+
+    static const int levelCount = 4;
+    ComplainEntry complainMap[levelCount];
 
 public:
     Harl();

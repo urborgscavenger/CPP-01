@@ -2,10 +2,10 @@
 #include "Harl.hpp"
 
 Harl::Harl() {
-    complainMap["DEBUG"] = &Harl::debug;
-    complainMap["INFO"] = &Harl::info;
-    complainMap["WARNING"] = &Harl::warning;
-    complainMap["ERROR"] = &Harl::error;
+    complainMap[0] = {"DEBUG", &Harl::debug};
+    complainMap[1] = {"INFO", &Harl::info};
+    complainMap[2] = {"WARNING", &Harl::warning};
+    complainMap[3] = {"ERROR", &Harl::error};
 }
 
 void Harl::debug(void) {
@@ -29,8 +29,10 @@ void Harl::error(void) {
 }
 
 void Harl::complain(string level) {
-    std::map<string, ComplainFunc>::iterator it = complainMap.find(level);
-    if (it != complainMap.end()) {
-        (this->*(it->second))();
+    for (int i = 0; i < levelCount; ++i) {
+        if (complainMap[i].key == level) {
+            (this->*(complainMap[i].func))();
+            return;
+        }
     }
 }
